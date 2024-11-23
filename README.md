@@ -13,3 +13,5 @@ For Page Routing
 I have create a home page where all the listed jobs are displayed.
 When we click on the view details button it open a modal to show more details about the job. There we get the Apply button ,by clicking on it we get another modal for application form .
 All the necessary validations are done , if any field is invalid or empty the user won't be able to click the submit button and validation messages will be shown.
+
+For references and help I have used chatGpt and other online resources .(only when required)
