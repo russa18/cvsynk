@@ -10,12 +10,15 @@ import {
 import { Layout } from "./Layout";
 import Home from "./components/Home/Home";
 import "./App.css"
+import About from "./components/About/About";
  
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
-      <Route path="" element={<Home />} />
+      <Route path="/" element={<Home />} />
+      <Route path="/about" element={<About/>} />
+
     </Route>
   )
 );

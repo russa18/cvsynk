@@ -1,7 +1,7 @@
 const jobData = [
     {
       title: "Web Developer",
-      logo: "src/assets/images/91hr-logo.png",
+      logo: "/images/91hr-logo.png",
       company: "91HR",
       location: "Panjim Goa",
       salary: "Not disclosed",
@@ -15,7 +15,7 @@ const jobData = [
     },
     {
       title: "Frontend Developer",
-      logo: "src/assets/images/company-logo.webp",
+      logo: "/images/company-logo.webp",
       company: "TechWave",
       location: "Bangalore, India",
       salary: "₹50,000/month",
@@ -29,7 +29,7 @@ const jobData = [
     },
     {
       title: "Backend Developer",
-      logo: "src/assets/images/logo2.webp",
+      logo: "/images/logo2.webp",
       company: "CodeCraft",
       location: "Mumbai, India",
       salary: "₹60,000/month",
@@ -43,7 +43,7 @@ const jobData = [
     },
     {
       title: "Full Stack Developer",
-      logo: "src/assets/images/logo.webp",
+      logo: "/images/logo.webp",
       company: "InnoTech",
       location: "Pune, India",
       salary: "₹70,000/month",
@@ -57,7 +57,7 @@ const jobData = [
     },
     {
       title: "UI/UX Designer",
-      logo: "src/assets/images/logo.webp",
+      logo: "/images/logo.webp",
       company: "DesignPro",
       location: "Hyderabad, India",
       salary: "₹45,000/month",
@@ -71,7 +71,7 @@ const jobData = [
     },
     {
       title: "Data Analyst",
-      logo: "src/assets/images/company-logo.webp",
+      logo: "/images/company-logo.webp",
       company: "InsightHub",
       location: "Delhi, India",
       salary: "₹55,000/month",
@@ -85,7 +85,7 @@ const jobData = [
     },
     {
       title: "Mobile App Developer",
-      logo: "src/assets/images/logo2.webp",
+      logo: "/images/logo2.webp",
       company: "AppCraft",
       location: "Chennai, India",
       salary: "₹65,000/month",
@@ -99,7 +99,7 @@ const jobData = [
     },
     {
       title: "Project Manager",
-      logo: "src/assets/images/logo.webp",
+      logo: "/images/logo.webp",
       company: "BizSolutions",
       location: "Noida, India",
       salary: "₹80,000/month",
@@ -113,7 +113,7 @@ const jobData = [
     },
     {
       title: "Cloud Engineer",
-      logo: "src/assets/images/company-logo.webp",
+      logo: "/images/company-logo.webp",
       company: "CloudMatrix",
       location: "Remote",
       salary: "₹90,000/month",

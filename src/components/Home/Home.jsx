@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   MdOutlineLocationOn,
   MdOutlineCurrencyRupee,
@@ -12,6 +12,10 @@ export default function Home() {
 
   const [isApplyJobOpen, setIsApplyJobOpen] = useState(false);
   const [fileName, setFileName] = useState(null);
+
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [errors, setErrors] = useState({});
 
   const handleViewDetails = (job) => {
     setSelectedJob(job);
@@ -30,23 +34,103 @@ export default function Home() {
 
   const closeApplyJob = () => {
     setIsApplyJobOpen(!isApplyJobOpen);
-    setSelectedJob(null);
+    // setSelectedJob(null);
+  };
+
+  useEffect(() => {
+    if (isModalOpen || isApplyJobOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isModalOpen, isApplyJobOpen]);
+
+  const handleEmailChange = (e) => {
+    const value = e.target.value;
+    setEmail(value);
+
+    if (!value) {
+      setErrors((prev) => ({ ...prev, email: "Email is required." }));
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+      setErrors((prev) => ({ ...prev, email: "Invalid email format." }));
+    } else {
+      setErrors((prev) => ({ ...prev, email: null }));
+    }
+  };
+
+  const handleNameChange = (e) => {
+    const value = e.target.value;
+    setName(value);
+
+    if (!value) {
+      setErrors((prev) => ({ ...prev, name: "Name is required." }));
+    } else if (!/^[a-zA-Z\s]+$/.test(value)) {
+      setErrors((prev) => ({
+        ...prev,
+        name: "Name must only contain alphabets.",
+      }));
+    } else if (value.length < 3) {
+      setErrors((prev) => ({
+        ...prev,
+        name: "Name must be at least 3 characters.",
+      }));
+    } else {
+      setErrors((prev) => ({ ...prev, name: null }));
+    }
   };
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      setFileName(file.name); // Save the file name to display
+      if (file.type === "application/pdf") {
+        setFileName(file.name);
+        setErrors((prev) => ({ ...prev, file: null }));
+      } else {
+        setErrors((prev) => ({
+          ...prev,
+          file: "Only PDF files are allowed.",
+        }));
+        event.target.value = "";
+      }
+    } else {
+      setErrors((prev) => ({ ...prev, file: "Resume (PDF) is required." }));
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const isFormValid = !errors.email && !errors.name && !errors.file;
+    const isInputFilled = fileName && name && email;
+    if (isFormValid && isInputFilled) {
+      console.log({
+        email,
+        name,
+        fileName,
+      });
+      alert("Form submitted successfully!");
+      setIsApplyJobOpen(false);
+      setIsModalOpen(false);
+
+      setEmail("");
+      setName("");
+      setFileName(null);
+    } else {
+      alert("Please fix the errors before submitting.");
     }
   };
 
   return (
-    <div className="home max-w-screen-xl m-auto py-4 px-[1rem]">
+    <div className="home max-w-screen-xl m-auto py-4 px-[1rem] mt-20">
       <div className="grid sm:grid-cols-2 gap-4">
         {jobData.map((job, index) => (
           <div
             key={index}
-            className="job-list border-2 p-4 grid grid-cols-5 gap-4"
+            className="job-list border-2 p-4 grid grid-cols-5 gap-4 hover:shadow-md"
           >
             <div>
               <img
@@ -175,11 +259,11 @@ export default function Home() {
           onClick={() => setIsApplyJobOpen(false)}
         >
           <div
-            className="modal-content bg-white p-6 rounded-md max-h-[90vh] overflow-y-auto text-gray-800 relative w-[95%] sm:w-fit"
+            className="modal-content bg-white pt-10 p-6 rounded-md max-h-[90vh] overflow-y-auto text-gray-800 relative w-[95%] sm:w-fit"
             onClick={(e) => e.stopPropagation()}
           >
             <button
-              className="close-button text-red-500 text-2xl font-bold  transition-transform leading-none absolute top-1 right-1"
+              className="close-button text-red-500 text-2xl font-bold  transition-transform leading-none absolute top-1 right-5"
               onClick={closeApplyJob}
             >
               &times;
@@ -187,30 +271,48 @@ export default function Home() {
 
             <div className="application-form">
               <div className="text-center">
-                <p>Applicaton for the role of</p>
+                <p>Application for the role of</p>
                 <p>
                   {selectedJob.title} | {selectedJob.company} |{" "}
                   {selectedJob.location}
                 </p>
               </div>
 
-              <form className="flex flex-col ">
+              <form className="flex flex-col " onSubmit={handleSubmit}>
                 <input
                   type="email"
                   placeholder="Email"
-                  className="px-4 py-2 mt-4 outline-1 outline rounded-md outline-gray-300"
+                  value={email}
+                  onChange={handleEmailChange}
+                  className={`px-4 py-2 mt-4 outline-1 outline rounded-md outline-gray-300 ${
+                    errors.email ? "outline-red-500" : ""
+                  }`}
                 />
+                {errors.email && (
+                  <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+                )}
                 <input
                   type="text"
-                  placeholder="name"
-                  className="px-4 py-2 mt-4 outline-1 outline rounded-md outline-gray-300"
+                  value={name}
+                  placeholder="Full name"
+                  onChange={handleNameChange}
+                  className={`px-4 py-2 mt-4 outline-1 outline rounded-md outline-gray-300 ${
+                    errors.name ? "outline-red-500" : ""
+                  }`}
                 />
+                {errors.name && (
+                  <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+                )}
                 <div className="file-upload-container flex flex-col w-[fit-content] my-4">
                   <label
                     htmlFor="file-upload"
-                    className="px-6 py-2 bg-blue-400 text-white font-semibold rounded-lg cursor-pointer hover:bg-blue-600 transition"
+                    className={`px-6 py-2 bg-blue-500 text-white font-semibold rounded-lg cursor-pointer hover:bg-blue-600 transition ${
+                      fileName ? "bg-blue-600" : ""
+                    }`}
                   >
-                    Upload Resume
+                    <span className={`${fileName ? "" : "animate-pulse"} `}>
+                      Upload Resume (.pdf)
+                    </span>
                   </label>
                   <input
                     type="file"
@@ -224,11 +326,41 @@ export default function Home() {
                       <span className="font-semibold">{fileName}</span>
                     </p>
                   )}
+                  {errors.file && (
+                    <p className="text-red-500 text-sm mt-1">{errors.file}</p>
+                  )}
                 </div>
 
                 <button
                   type="submit"
-                  className="transition ease-in-out delay-150 bg-gradient-to-r from-teal-400 to-blue-500 p-4 rounded-md   hover:scale-[1.01] text-white hover:from-blue-500 hover:to-teal-400 duration-300 shadow-xl"
+                  disabled={
+                    !email ||
+                    !name ||
+                    !fileName ||
+                    errors.email ||
+                    errors.name ||
+                    errors.file
+                  }
+                  className={`transition ease-in-out delay-150 bg-gradient-to-r py-2 rounded-md text-white duration-300 shadow-xl text-lg ${
+                    !email ||
+                    !name ||
+                    !fileName ||
+                    errors.email ||
+                    errors.name ||
+                    errors.file
+                      ? "from-blue-200 to-blue-300 cursor-not-allowed"
+                      : "from-teal-400 to-blue-500 hover:scale-[1.01] hover:from-blue-500 hover:to-teal-400"
+                  }`}
+                  title={
+                    !email ||
+                    !name ||
+                    !fileName ||
+                    errors.email ||
+                    errors.name ||
+                    errors.file
+                      ? "Please fill out all fields correctly before submitting."
+                      : ""
+                  }
                 >
                   Submit
                 </button>
