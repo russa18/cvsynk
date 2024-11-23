@@ -1,4 +1,3 @@
- 
 .overlay {
   position: fixed;
   top: 0;
@@ -16,13 +15,13 @@
   visibility: visible;
 }
 
-nav,footer{
-  background: linear-gradient(to right, rgb(118 209 254),rgb(1 84 152));
-
+nav,
+footer {
+  background: linear-gradient(to right, rgb(118 209 254), rgb(1 84 152));
 }
 
 .view-details-button {
-  margin:0.5rem 0;
+  margin: 0.5rem 0;
   align-items: center;
   background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
   border: 0;
@@ -60,18 +59,15 @@ nav,footer{
   transition: 300ms;
 }
 
-
 .view-details-button:hover span,
 .view-details-button:hover {
-  background-image: linear-gradient(144deg,#00ddeb, #5b42f3 50%,#af40ff);
+  background-image: linear-gradient(144deg, #00ddeb, #5b42f3 50%, #af40ff);
   transform: scale(1.01);
-
 }
 
 button:active {
   transform: scale(0.9);
 }
-
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
@@ -93,8 +89,7 @@ button:active {
   background-color: #555; /* Darker color for the thumb when hovering */
 }
 
-
-/* From Uiverse.io by Gaurav-WebDev */ 
+/* From Uiverse.io by Gaurav-WebDev */
 .apply-btn {
   height: 50px;
   width: 100%;
@@ -109,7 +104,7 @@ button:active {
 }
 
 .apply-btn:hover {
-  box-shadow: .5px .5px 150px #252525;
+  box-shadow: 0.5px 0.5px 150px #252525;
 }
 
 .type1::after {
@@ -117,7 +112,7 @@ button:active {
   height: 50px;
   width: 100%;
   background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
-margin: auto;
+  margin: auto;
   color: #fff;
   position: absolute;
   top: 0%;
@@ -135,7 +130,7 @@ margin: auto;
   content: "Apply";
   height: 50px;
   width: 100%;
-  background-image: linear-gradient(144deg,#00ddeb, #5b42f3 50%,#af40ff);
+  background-image: linear-gradient(144deg, #00ddeb, #5b42f3 50%, #af40ff);
   color: #fff;
   position: absolute;
   top: 0%;
@@ -156,4 +151,3 @@ margin: auto;
 .type1:hover::before {
   transform: translateY(-50px) scale(0) rotate(120deg);
 }
-

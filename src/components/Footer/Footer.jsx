@@ -1,5 +1,10 @@
 import { Link } from "react-router-dom";
-import { FaInstagram, FaLinkedin, FaFacebookF,FaXTwitter  } from "react-icons/fa6";
+import {
+  FaInstagram,
+  FaLinkedin,
+  FaFacebookF,
+  FaXTwitter,
+} from "react-icons/fa6";
 
 export default function Footer() {
   return (
@@ -9,6 +14,7 @@ export default function Footer() {
           src="/images/logo.webp"
           alt="cvsynk logo"
           className="w-20 h-20 object-contain"
+          loading="lazy"
         />
       </Link>
       <div className="col-span-4">
@@ -76,16 +82,16 @@ export default function Footer() {
 
           <ul className="flex gap-2 ">
             <Link to="/">
-              <FaInstagram  className="w-6 h-6 hover:scale-110"/>
+              <FaInstagram className="w-6 h-6 hover:scale-110" />
             </Link>
             <Link to="/">
-              <FaFacebookF  className="w-6 h-6 hover:scale-110"/>
+              <FaFacebookF className="w-6 h-6 hover:scale-110" />
             </Link>
             <Link to="/">
-              <FaLinkedin  className="w-6 h-6 hover:scale-110"/>
+              <FaLinkedin className="w-6 h-6 hover:scale-110" />
             </Link>
             <Link to="/">
-              <FaXTwitter  className="w-6 h-6 hover:scale-110"/>
+              <FaXTwitter className="w-6 h-6 hover:scale-110" />
             </Link>
           </ul>
         </div>

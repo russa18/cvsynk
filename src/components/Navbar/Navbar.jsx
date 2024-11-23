@@ -21,7 +21,12 @@ const Navbar = () => {
     <div className="fixed top-0 left-0 w-full">
       <nav className="max-w-screen-xl m-auto flex justify-between items-center py-4 px-[1rem] sm:px-[5rem] text-white shadow-lg">
         <Link to="/" className="">
-          <img src="/images/logo.webp" alt="cv synk " className="h-10 w-10" />
+          <img
+            src="/images/logo.webp"
+            alt="cv synk "
+            className="h-10 w-10"
+            loading="lazy"
+          />
         </Link>
 
         <div className={mobile ? `hidden ` : `flex gap-5`}>

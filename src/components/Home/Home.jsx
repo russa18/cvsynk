@@ -137,6 +137,7 @@ export default function Home() {
                 src={job.logo}
                 alt={`${job.company} logo`}
                 className="w-20 h-20 object-contain m-auto"
+                loading="lazy"
               />
             </div>
 
@@ -187,6 +188,7 @@ export default function Home() {
               src={selectedJob.logo}
               alt={`${selectedJob.company} logo`}
               className="w-24 h-24 object-contain mx-auto mb-4"
+              loading="lazy"
             />
             <h3 className="font-bold text-lg text-center">
               {selectedJob.title}
