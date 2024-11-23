@@ -1,8 +1,1 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# React + Vite This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules. # Tailwind Css + Custom Css This project utilizes Tailwind CSS for utility-first styling along with custom CSS for additional styling # React Icons For icons # React Router For Page Routing I have create a home page where all the listed jobs are displayed. When we click on the view details button it open a modal to show more details about the job. There we get the Apply button ,by clicking on it we get another modal for application form . All the necessary validations are done , if any field is invalid or empty the user won't be able to click the submit button and validation messages will be shown. Pushed the code to github and deployed it on vercel (link - https://cvsynk.vercel.app/) For references and help I have used chatGpt and other online resources .(only when required)
